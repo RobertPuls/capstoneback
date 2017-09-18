@@ -10,8 +10,8 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  console.log(req.body.pattern);
-  queries.create(req.body.pattern).then(beat => {
+  console.log(req.body);
+  queries.create(req.body).then(beat => {
     console.log("here");
     res.json({
       'beats': beat
