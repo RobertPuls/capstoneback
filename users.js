@@ -41,8 +41,9 @@ router.post("/signup", function(req, res, next) {
               password: hash
             };
             queries.createUser(user).then((user) => {
+              console.log(user);
               jwt.sign({
-                id: user[0].id
+                id: user.id
               }, token_secret, {
                 expiresIn: "1h"
               }, (err, token) => {
