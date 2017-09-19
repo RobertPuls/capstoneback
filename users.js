@@ -26,7 +26,7 @@ router.get("/", function(req, res, next) {
   }));
 });
 
-router.post("/signup", function(req, res, next) {
+router.post("/signup/users", function(req, res, next) {
   console.log("signup route body", req.body);
 
   if (validUser(req.body)) {
@@ -67,7 +67,7 @@ router.post("/signup", function(req, res, next) {
   }
 });
 
-router.post("/login", function(req, res, next) {
+router.post("/login/users", function(req, res, next) {
   if (validUser(req.body)) {
     queries.getUserByEmail(req.body.email).then((user) => {
       if (user) {
