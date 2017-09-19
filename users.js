@@ -36,7 +36,7 @@ router.get("/", function(req, res, next) {
 router.post("/signup/users", function(req, res, next) {
   console.log("signup route body", req.body);
 
-  if (validLogin(req.body)) {
+  if (validUser(req.body)) {
     queries.getUserByEmail(req.body.email).then((user) => {
       console.log("here");
       if (!user) {
@@ -77,7 +77,7 @@ router.post("/signup/users", function(req, res, next) {
 
 router.post("/login/users", function(req, res, next) {
   console.log(req.body.email);
-  if (validUser(req.body)) {
+  if (validLogin(req.body)) {
     console.log("here1");
     queries.getUserByEmail(req.body.email).then((user) => {
       console.log("here2", user);
