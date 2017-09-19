@@ -24,7 +24,7 @@ module.exports = {
       "address"
     ).then(doc => {
       console.log(doc);
-      return doc
+      return doc;
     });
   },
   getUserByEmail(user_email) {
@@ -32,6 +32,7 @@ module.exports = {
       "email": user_email
     }).then((doc) => {
       console.log("doc", doc);
+      return doc;
     })
   },
 }
