@@ -69,8 +69,11 @@ router.post("/signup/users", function(req, res, next) {
 });
 
 router.post("/login/users", function(req, res, next) {
+  console.log(req.body.email);
   if (validUser(req.body)) {
+    console.log("here1");
     queries.getUserByEmail(req.body.email).then((user) => {
+      console.log("here2", user);
       if (user) {
         bcrypt.compare(req.body.password, user.password).then((match) => {
           if (match) {
