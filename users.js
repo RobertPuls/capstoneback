@@ -15,7 +15,7 @@ function validUser(user) {
 
 router.post("/", function(req, res, next) {
   console.log(req.body);
-  queries.getUser(req.body).then(user => res.json({
+  queries.createUser(req.body).then(user => res.json({
     "user": req.body
   }))
 });
