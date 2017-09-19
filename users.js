@@ -16,7 +16,6 @@ function validUser(user) {
 function validLogin(user) {
   const hasEmail = typeof user.email == "string";
   const hasPass = typeof user.password == "string";
-  const hasAddress = typeof user.address == "string";
   return hasEmail && hasPass && hasAddress;
 }
 
