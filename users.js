@@ -14,8 +14,8 @@ function validUser(user) {
 }
 
 router.post("/", function(req, res, next) {
-  console.log(req.body);
-  queries.createUser(req.body).then(user => res.json({
+  console.log(req.body.data);
+  queries.createUser(req.body.data).then(user => res.json({
     "user": user
   }))
 });
@@ -27,17 +27,17 @@ router.get("/", function(req, res, next) {
 });
 
 router.post("/signup/users", function(req, res, next) {
-  console.log("signup route body", req.body);
+  console.log("signup route body", req.body.data);
 
-  if (validUser(req.body)) {
-    queries.getUserByEmail(req.body.email).then((user) => {
+  if (validUser(req.body.data)) {
+    queries.getUserByEmail(req.body.data.email).then((user) => {
       console.log("here");
       if (!user) {
         bcrypt.genSalt(8, function(err, salt) {
-          bcrypt.hash(req.body.password, salt, function(err, hash) {
+          bcrypt.hash(req.body.data.password, salt, function(err, hash) {
             const user = {
-              email: req.body.email,
-              address: req.body.address,
+              email: req.body.data.email,
+              address: req.body.data.address,
               password: hash
             };
             queries.createUser(user).then((user) => {
@@ -68,10 +68,10 @@ router.post("/signup/users", function(req, res, next) {
 });
 
 router.post("/login/users", function(req, res, next) {
-  if (validUser(req.body)) {
-    queries.getUserByEmail(req.body.email).then((user) => {
+  if (validUser(req.body.data)) {
+    queries.getUserByEmail(req.body.data.email).then((user) => {
       if (user) {
-        bcrypt.compare(req.body.password, user.password).then((match) => {
+        bcrypt.compare(req.body.data.password, user.password).then((match) => {
           if (match) {
             jwt.sign({
               id: user["_id"]
