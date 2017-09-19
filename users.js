@@ -51,6 +51,7 @@ router.post("/signup/users", function(req, res, next) {
                 console.log("token", token);
                 res.json({
                   id: user["_id"],
+                  user: user.address,
                   token,
                   message: "ok"
                 });
