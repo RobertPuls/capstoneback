@@ -13,6 +13,13 @@ function validUser(user) {
   return hasEmail && hasPass && hasAddress;
 }
 
+function validLogin(user) {
+  const hasEmail = typeof user.email == "string";
+  const hasPass = typeof user.password == "string";
+  const hasAddress = typeof user.address == "string";
+  return hasEmail && hasPass && hasAddress;
+}
+
 router.post("/", function(req, res, next) {
   console.log(req.body);
   queries.createUser(req.body).then(user => res.json({
@@ -29,7 +36,7 @@ router.get("/", function(req, res, next) {
 router.post("/signup/users", function(req, res, next) {
   console.log("signup route body", req.body);
 
-  if (validUser(req.body)) {
+  if (validLogin(req.body)) {
     queries.getUserByEmail(req.body.email).then((user) => {
       console.log("here");
       if (!user) {
