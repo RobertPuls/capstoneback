@@ -14,6 +14,9 @@ module.exports = {
   createUser(user) {
     return users.insert(user);
   },
+  getAllUsers() {
+    return users.find({});
+  },
   getUser(password) {
     return users.findOne({
         "password": password
@@ -26,7 +29,9 @@ module.exports = {
   },
   getUserByEmail(user_email) {
     return users.findOne({
-      email: user_email
-    });
+      "email": user_email
+    }).then((doc) => {
+      console.log("doc", doc);
+    })
   },
 }

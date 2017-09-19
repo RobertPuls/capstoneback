@@ -6,29 +6,31 @@ const token_secret = "french_toast";
 
 const router = express.Router();
 
-// function isValidId(req, res, next) {
-//   if (!isNaN(req.params.id)) {
-//     return next();
-//   }
-//   next(new Error("Invalid ID"));
-// }
-//
 function validUser(user) {
   const hasEmail = typeof user.email == "string";
   const hasPass = typeof user.password == "string";
   const hasAddress = typeof user.address == "string";
   return hasEmail && hasPass && hasAddress;
 }
-//
-// router.get('/users/:id', (req, res, next) => {
-//   queries.getOne('user', req.params.id).then(user => {
-//     res.json(user)
-//   });
-// });
+
+router.post("/", function(req, res, next) {
+  queries.getUser(req.body).then(user => res.json({
+    "user": req.body
+  }))
+});
+
+router.get("/", function(req, res, next) {
+  queries.getAllUsers().then(users => res.json({
+    "users": req.body
+  }));
+})
 
 router.post("/signup", function(req, res, next) {
+  console.log("signup route body", req.body);
+
   if (validUser(req.body)) {
     queries.getUserByEmail(req.body.email).then((user) => {
+      console.log("here");
       if (!user) {
         bcrypt.genSalt(8, function(err, salt) {
           bcrypt.hash(req.body.password, salt, function(err, hash) {
@@ -95,3 +97,5 @@ router.post("/login", function(req, res, next) {
     next(new Error("Invalid Login"));
   }
 });
+
+module.exports = router;
