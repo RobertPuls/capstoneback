@@ -22,9 +22,9 @@ router.post("/", function(req, res, next) {
 
 router.get("/", function(req, res, next) {
   queries.getAllUsers().then(users => res.json({
-    "users": req.body
+    "users": users
   }));
-})
+});
 
 router.post("/signup", function(req, res, next) {
   console.log("signup route body", req.body);
