@@ -16,7 +16,7 @@ function validUser(user) {
 function validLogin(user) {
   const hasEmail = typeof user.email == "string";
   const hasPass = typeof user.password == "string";
-  return hasEmail && hasPass && hasAddress;
+  return hasEmail && hasPass;
 }
 
 router.post("/", function(req, res, next) {
