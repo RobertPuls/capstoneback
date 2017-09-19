@@ -43,14 +43,14 @@ router.post("/signup", function(req, res, next) {
             queries.createUser(user).then((user) => {
               console.log(user);
               jwt.sign({
-                id: user.id
+                id: user["_id"]
               }, token_secret, {
                 expiresIn: "1h"
               }, (err, token) => {
                 console.log("err", err);
                 console.log("token", token);
                 res.json({
-                  id: user[0].id,
+                  id: user["_id"],
                   token,
                   message: "ok"
                 });
@@ -74,14 +74,14 @@ router.post("/login", function(req, res, next) {
         bcrypt.compare(req.body.password, user.password).then((match) => {
           if (match) {
             jwt.sign({
-              id: user.id
+              id: user["_id"]
             }, token_secret, {
               expiresIn: "1h"
             }, (err, token) => {
               console.log("err", err);
               console.log("token", token);
               res.json({
-                id: user.id,
+                id: user["_id"],
                 address: user.address,
                 token,
                 message: "logged in"
