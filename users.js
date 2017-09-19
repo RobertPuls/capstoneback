@@ -27,7 +27,8 @@ router.get("/", function(req, res, next) {
 });
 
 router.post("/signup/users", function(req, res, next) {
-  console.log("signup route body", req.body.data);
+  console.log("signup route body ", req.body.data);
+  console.log("signup route email", req.body.data.email);
 
   if (validUser(req.body.data)) {
     queries.getUserByEmail(req.body.data.email).then((user) => {
