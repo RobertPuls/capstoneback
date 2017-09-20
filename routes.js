@@ -10,8 +10,8 @@ router.get('/saveds', (req, res) => {
 });
 
 router.post('/saveds', (req, res) => {
-  console.log(req.body);
-  queries.create(req.body).then(saved => {
+  console.log(req.body.saved);
+  queries.create(req.body.saved).then(saved => {
     console.log("here");
     res.json({
       saved
