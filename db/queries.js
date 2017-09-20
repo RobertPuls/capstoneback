@@ -1,6 +1,6 @@
 const db = require('./index');
 
-const beats = db.get('saveds');
+const saveds = db.get('saveds');
 const users = db.get('users');
 
 module.exports = {
