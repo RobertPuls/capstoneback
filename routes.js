@@ -5,7 +5,7 @@ const queries = require("./db/queries");
 
 router.get('/saveds', (req, res) => {
   queries.getAllBeats().then(beats => res.json({
-    "beats": beats
+    beats
   }));
 });
 
@@ -14,7 +14,7 @@ router.post('/saveds', (req, res) => {
   queries.create(req.body).then(beat => {
     console.log("here");
     res.json({
-      'beats': beat
+      beat
     });
   });
 })
