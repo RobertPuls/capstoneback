@@ -3,13 +3,13 @@ const router = express.Router();
 
 const queries = require("./db/queries");
 
-router.get('/', (req, res) => {
+router.get('/saved', (req, res) => {
   queries.getAllBeats().then(beats => res.json({
     "beats": beats
   }));
 });
 
-router.post('/', (req, res) => {
+router.post('/saved', (req, res) => {
   console.log(req.body);
   queries.create(req.body).then(beat => {
     console.log("here");
