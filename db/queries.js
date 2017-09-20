@@ -6,10 +6,10 @@ const users = db.get('users');
 module.exports = {
   getAllBeats() {
     console.log('queries');
-    return beats.find({});
+    return saveds.find({});
   },
   create(beat) {
-    return beats.insert(beat);
+    return saveds.insert(beat);
   },
   createUser(user) {
     return users.insert(user);
