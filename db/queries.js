@@ -8,8 +8,8 @@ module.exports = {
     console.log('queries');
     return saveds.find({});
   },
-  create(beat) {
-    return saveds.insert(beat);
+  create(save) {
+    return saveds.insert(save);
   },
   createUser(user) {
     return users.insert(user);
