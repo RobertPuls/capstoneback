@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({
 
 app.use(cors());
 
-app.use("/saveds", routes);
+app.use("/", routes);
 app.use("/user", userRoutes);
 
 // catch 404 and forward to error handler
